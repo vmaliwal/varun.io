@@ -44,9 +44,10 @@ module.exports = {
           `source sans pro\:300,400,500i,600,700`,
           `zilla\:300,400,500i,600,700`,
           `domine`,
+          `Source Code Pro`,
         ],
-        display: "swap",
+        display: 'swap',
       },
     },
   ],
-}
+};
