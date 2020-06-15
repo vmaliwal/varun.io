@@ -4,7 +4,10 @@ export default {
     headline: 'Domine',
     code: 'Source Code Pro, monospace',
   },
-  colors: {},
+  colors: {
+    body: '#111A20',
+    primaryText: '#ECF8FF',
+  },
   breakpoints: {
     mobile: 'only screen and (max-width: 50rem)',
     tablet: 'only screen and (max-width: 65rem)',
