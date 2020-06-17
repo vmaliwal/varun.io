@@ -5,8 +5,8 @@ export default {
     code: 'Source Code Pro, monospace',
   },
   colors: {
-    body: '#111A20',
-    primaryText: '#ECF8FF',
+    body: '#FFFF1',
+    primaryText: '#000',
   },
   breakpoints: {
     mobile: 'only screen and (max-width: 50rem)',
