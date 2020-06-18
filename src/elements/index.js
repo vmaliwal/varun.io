@@ -4,3 +4,4 @@ export * from './FooterElements';
 export * from './HeroElements';
 export * from './Rectangle';
 export * from './ArticleElements';
+export * from './ArticlesNavigationElements';

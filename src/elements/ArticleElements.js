@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const ArticleWrapper = styled.div`
   grid-column: 3 / span 10;
-  grid-row: 13 / span auto;
   display: flex;
   min-height: 11rem;
   margin-bottom: 0.6rem;
