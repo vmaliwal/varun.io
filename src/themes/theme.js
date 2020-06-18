@@ -8,6 +8,7 @@ export default {
     body: '#FFFFFF',
     primaryText: '#0F0F0F',
     primaryBorder: '#3FAFB9',
+    articles: ['#36ba7b', '#BA5749', '#4975BA'],
   },
   breakpoints: {
     mobile: 'only screen and (max-width: 50rem)',

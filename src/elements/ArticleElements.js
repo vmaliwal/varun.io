@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const ArticleWrapper = styled.div`
-  grid-column: 2 / span 12;
+  grid-column: 3 / span 10;
   grid-row: 13 / span auto;
   display: flex;
   min-height: 11rem;
@@ -19,7 +19,7 @@ export const ArticleTextWrapper = styled.div`
   & .article-title {
     grid-column: 2 / span 7;
     grid-row: 2 / 3;
-    color: ${(props) => props.theme.colors.primaryBorder};
+    color: #36ba7b;
     line-height: 180%;
     font-weight: 600;
     font-size: 1.5rem;
@@ -34,3 +34,7 @@ export const ArticleTextWrapper = styled.div`
     font-size: 0.9rem;
   }
 `;
+
+// export const ArticleImageWraper = styled.div`
+
+// `;

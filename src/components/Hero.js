@@ -4,7 +4,7 @@ import { HeroWrapper, RectangleWrapper, HeroTextWrapper } from '../elements';
 export default function Hero() {
   return (
     <HeroWrapper>
-      <RectangleWrapper>
+      <RectangleWrapper color="#3fafb9">
         <HeroTextWrapper>
           <p className="text-primary">
             I am Varun, Software Engineer and Generative Art enthusiast.

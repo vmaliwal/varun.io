@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const HeroWrapper = styled.div`
-  grid-column: 2 / span 12;
+  grid-column: 3 / span 10;
   grid-row: 2 / 13;
   display: flex;
   min-height: 11rem;

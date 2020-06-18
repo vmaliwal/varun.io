@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
-  grid-column: 2 / span 12;
+  grid-column: 3 / span 10;
   min-height: 11.25rem;
   padding: 3rem 0;
   display: flex;
@@ -27,6 +27,7 @@ export const FooterSocialWrapper = styled.div`
 export const FooterSocialIcons = styled.div`
   flex: 0 0 100%;
   margin-bottom: 2rem;
+  align-items: flex-end;
 
   & img {
     height: 22px;
