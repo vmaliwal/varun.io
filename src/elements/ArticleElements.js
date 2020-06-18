@@ -12,12 +12,12 @@ export const ArticleWrapper = styled.div`
 export const ArticleTextWrapper = styled.div`
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(10, minmax(auto, 4.2rem));
-  grid-template-rows: repeat(10, minmax(auto, auto));
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(6, 0.3fr);
   min-height: 11rem;
 
   & .article-title {
-    grid-column: 2 / span 7;
+    grid-column: 2 / span 11;
     grid-row: 2 / 3;
     color: #36ba7b;
     line-height: 180%;
@@ -26,15 +26,33 @@ export const ArticleTextWrapper = styled.div`
   }
 
   & .article-excerpt {
-    grid-column: 2 / span 7;
-    grid-row: 4 / 6;
+    grid-column: 2 / span 11;
+    grid-row: 3 / 6;
     color: ${(props) => props.theme.colors.primaryText};
     line-height: 180%;
     font-weight: 600;
     font-size: 0.9rem;
   }
+
+  & .article-date {
+    grid-column: 2 / span 4;
+    grid-row: 5;
+    color: ${(props) => props.theme.colors.primaryText};
+    line-height: 180%;
+    font-weight: 600;
+    font-size: 0.6rem;
+  }
+
+  & .article-title {
+    transform: perspective(1px) translateZ(0);
+    transition-duration: 0.3s;
+    transition-property: transform;
+    transform-origin: 0 100%;
+  }
+
+  & .article-title:hover,
+  & .article-title:focus,
+  & .article-title:active {
+    transform: skew(-10deg);
+  }
 `;
-
-// export const ArticleImageWraper = styled.div`
-
-// `;

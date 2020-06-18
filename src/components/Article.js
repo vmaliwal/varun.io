@@ -3,10 +3,7 @@ import {
   ArticleWrapper,
   RectangleWrapper,
   ArticleTextWrapper,
-  ArticleImageWraper,
 } from '../elements';
-import Img from 'gatsby-image';
-import { useStaticQuery, graphql } from 'gatsby';
 
 export default function Article() {
   return (
@@ -20,27 +17,9 @@ export default function Article() {
             We will look into GatsbyJS and understand innerworkings of React
             with Gatsby.
           </p>
-          {/* <ArticleImage></ArticleImage> */}
+          <p className="article-date">September 2, 2020</p>
         </ArticleTextWrapper>
       </RectangleWrapper>
     </ArticleWrapper>
-  );
-}
-
-export function ArticleImage() {
-  const data = useStaticQuery(graphql`
-    query {
-      imageSharp(fluid: { originalName: { eq: "feature-image.jpg" } }) {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
-      }
-    }
-  `);
-
-  return (
-    <ArticleImageWraper>
-      <Img fluid={data.imageSharp.fluid}></Img>
-    </ArticleImageWraper>
   );
 }

@@ -12,13 +12,13 @@ export const HeroWrapper = styled.div`
 export const HeroTextWrapper = styled.div`
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(12, minmax(auto, 4.2rem));
-  grid-template-rows: repeat(12, minmax(auto, auto));
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(8, 0.5fr);
   min-height: 11rem;
 
   & .text-primary {
-    grid-column: 2 / span 7;
-    grid-row: 3 / span 7;
+    grid-column: 2 / span 6;
+    grid-row: 2 / span 3;
     color: ${(props) => props.theme.colors.primaryBorder};
     line-height: 180%;
     font-weight: 600;
@@ -26,8 +26,8 @@ export const HeroTextWrapper = styled.div`
   }
 
   & .text-secondary {
-    grid-column: 2 / span 7;
-    grid-row: 9;
+    grid-column: 2 / span 6;
+    grid-row: 6 / span 8;
     color: ${(props) => props.theme.colors.primaryText};
     line-height: 180%;
     font-weight: 600;
