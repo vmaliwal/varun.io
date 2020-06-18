@@ -10,12 +10,18 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body, html {
-    font-family: ${(props) => props.theme.fonts.body};
+    font-family: ${(props) => props.theme.font.body};
     height: 100%;
     background-color: ${(props) => props.theme.colors.body};
+    color: ${(props) => props.theme.colors.primaryText};
   }
 `;
 
 export const wrapRootElement = ({ element }) => {
-  return <ThemeProvider theme={Theme}>{element}</ThemeProvider>;
+  return (
+    <ThemeProvider theme={Theme}>
+      <GlobalStyles />
+      {element}
+    </ThemeProvider>
+  );
 };

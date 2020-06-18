@@ -1,12 +1,13 @@
 export default {
   font: {
-    body: 'inter, sans-serif',
-    headline: 'Domine',
+    body: 'IBM Plex Mono, sans-serif',
+    headline: 'IBM Plex Mono',
     code: 'Source Code Pro, monospace',
   },
   colors: {
-    body: '#FFFF1',
-    primaryText: '#000',
+    body: '#FFFFFF',
+    primaryText: '#0F0F0F',
+    primaryBorder: '#3FAFB9',
   },
   breakpoints: {
     mobile: 'only screen and (max-width: 50rem)',

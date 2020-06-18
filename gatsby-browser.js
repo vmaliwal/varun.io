@@ -14,6 +14,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     background-color: ${(props) => props.theme.colors.body};
     color: ${(props) => props.theme.colors.primaryText};
+    font-display: swap;
   }
 `;
 
