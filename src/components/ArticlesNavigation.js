@@ -6,7 +6,9 @@ export default function ArticlesNavigation() {
   return (
     <ArticlesNavigationWrapper>
       <div>Latest Articles</div>
-      <Link>View All >></Link>
+      <Link to="/articles" className="animated-link">
+        <div>View All >></div>
+      </Link>
     </ArticlesNavigationWrapper>
   );
 }
