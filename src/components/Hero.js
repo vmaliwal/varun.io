@@ -1,5 +1,12 @@
 import React from 'react';
-import { HeroWrapper, RectangleWrapper, HeroTextWrapper } from '../elements';
+import {
+  HeroWrapper,
+  RectangleWrapper,
+  HeroTextWrapper,
+  HeroSketchWrapper,
+} from '../elements';
+import P5Sketch from './P5Sketch';
+import Sketch from '../art/concentricArc';
 
 export default function Hero() {
   return (
@@ -14,6 +21,9 @@ export default function Hero() {
             obeserve or react to. Currently I am looking for Engineering Manager
             positions.
           </p>
+          <HeroSketchWrapper>
+            <P5Sketch art={Sketch} />
+          </HeroSketchWrapper>
         </HeroTextWrapper>
       </RectangleWrapper>
     </HeroWrapper>

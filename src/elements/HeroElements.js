@@ -34,3 +34,9 @@ export const HeroTextWrapper = styled.div`
     font-size: 1rem;
   }
 `;
+
+export const HeroSketchWrapper = styled.div`
+  grid-column: 8 / span 4;
+  grid-row: 2 / span 8;
+  margin-left: 1rem;
+`;

@@ -3,11 +3,13 @@ import { ArticlesNavigationWrapper } from '../elements';
 import { Link } from 'gatsby';
 
 export default function ArticlesNavigation() {
+  const VIEW_ALL = `View All >>`;
+
   return (
     <ArticlesNavigationWrapper>
       <div>Latest Articles</div>
       <Link to="/articles" className="animated-link">
-        <div>View All >></div>
+        <div>{VIEW_ALL}</div>
       </Link>
     </ArticlesNavigationWrapper>
   );
