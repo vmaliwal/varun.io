@@ -30,6 +30,7 @@ export default function Sketch(p5) {
     p5.line(x3, y3, x4, y4);
 
     // rectangle 1
+
     for (let i = y1 + 10; i < x1; i += 10) {
       p5.line(i, 0, i, height / 2);
     }
@@ -41,23 +42,23 @@ export default function Sketch(p5) {
 
     // rectangle 2
     const rectangle2 = Rectangle(0, height / 2, height / 2);
-    let { coordinates } = rectangle2;
+    let { coordinates: coordinates2 } = rectangle2;
 
     for (let i = 0; i < width / 2; i += 10) {
       p5.line(
-        coordinates.x1,
-        coordinates.y1 + i,
-        coordinates.x1 + i,
-        coordinates.y1
+        coordinates2.x1,
+        coordinates2.y1 + i,
+        coordinates2.x1 + i,
+        coordinates2.y1
       );
     }
 
     for (let i = 0; i < width / 2; i += 10) {
       p5.line(
-        coordinates.x2 + i,
-        coordinates.y2,
-        coordinates.x4,
-        coordinates.y4 + i
+        coordinates2.x2 + i,
+        coordinates2.y2,
+        coordinates2.x4,
+        coordinates2.y4 + i
       );
     }
 
