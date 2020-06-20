@@ -6,7 +6,7 @@ import {
   HeroSketchWrapper,
 } from '../elements';
 import P5Sketch from './P5Sketch';
-import Sketch from '../art/concentricArc';
+import Sketch from '../art/solLevitSquare';
 
 export default function Hero() {
   return (
