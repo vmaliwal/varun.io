@@ -89,7 +89,6 @@ export default function Sketch(p5) {
 
     // rectangle 3
     const rectangle3 = Rectangle(width / 2, height / 2, height / 2);
-    let { coordinates: coordinates3 } = rectangle3;
 
     const {
       top: top3,

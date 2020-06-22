@@ -1,7 +1,8 @@
 import React from 'react';
+import { useStaticQuery, graphql } from 'gatsby';
 import Container from '../components/Container';
 import Hero from '../components/Hero';
-import Article from '../components/Article';
+import Articles from '../components/Articles';
 import ArticlesNavigation from '../components/ArticlesNavigation';
 
 /**
@@ -19,13 +20,27 @@ import ArticlesNavigation from '../components/ArticlesNavigation';
  */
 
 export default function Home() {
+  const data = useStaticQuery(graphql`
+    {
+      allMdx(limit: 3, sort: { fields: frontmatter___date, order: DESC }) {
+        nodes {
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            slug
+            excerpt
+          }
+        }
+      }
+    }
+  `);
+
   return (
     <Container>
       <Hero />
       <ArticlesNavigation />
-      <Article />
-      <Article />
-      <Article />
+
+      <Articles data={data} />
     </Container>
   );
 }
