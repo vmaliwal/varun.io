@@ -17,12 +17,17 @@ import ArticlesNavigation from '../components/ArticlesNavigation';
  * Create individual article page
  * Add RSS functionality
  * Fetch data from MDX file
+ * Change text on index page to be added to site metadata
  */
 
 export default function Home() {
   const data = useStaticQuery(graphql`
     {
-      allMdx(limit: 3, sort: { fields: frontmatter___date, order: DESC }) {
+      allMdx(
+        limit: 3
+        sort: { fields: frontmatter___date, order: DESC }
+        filter: { frontmatter: { posted: { eq: true } } }
+      ) {
         nodes {
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
