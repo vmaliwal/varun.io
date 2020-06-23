@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ArticleWrapper = styled.div`
+export const ArticleCardWrapper = styled.div`
   grid-column: 3 / span 10;
   display: flex;
   min-height: 11rem;

@@ -1,6 +1,12 @@
+// Refer for https://www.christopherbiscardi.com/post/codeblocks-mdx-and-mdx-utils
+
 import React from 'react';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Theme from './src/themes/theme';
+import { preToCodeBlock } from 'mdx-utils';
+import { MDXProvider } from '@mdx-js/react';
+import Code from './src/components/Code';
+import './language-tab.css';
 
 const GlobalStyles = createGlobalStyle`
   * {
@@ -35,11 +41,27 @@ const GlobalStyles = createGlobalStyle`
 
 `;
 
+const components = {
+  pre: (preProps) => {
+    const props = preToCodeBlock(preProps);
+    // if there's a codeString and some props, we passed the test
+    if (props) {
+      return <Code {...props} />;
+    } else {
+      // it's possible to have a pre without a code in it
+      return <pre {...preProps} />;
+    }
+  },
+  wrapper: ({ children }) => <> {children} </>,
+};
+
 export const wrapRootElement = ({ element }) => {
   return (
-    <ThemeProvider theme={Theme}>
-      <GlobalStyles />
-      {element}
-    </ThemeProvider>
+    <MDXProvider components={components}>
+      <ThemeProvider theme={Theme}>
+        <GlobalStyles />
+        {element}
+      </ThemeProvider>
+    </MDXProvider>
   );
 };

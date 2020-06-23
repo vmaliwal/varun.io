@@ -33,4 +33,12 @@ exports.createPages = async function ({ actions, graphql }) {
       },
     });
   });
+  posts.forEach(({ frontmatter, id }) => {
+    const slug = frontmatter.slug;
+    createPage({
+      path: slug,
+      component: path.resolve('./src/templates/singleArticle.js'),
+      context: { id },
+    });
+  });
 };

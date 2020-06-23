@@ -3,7 +3,6 @@ import ArticleCard from './ArticleCard';
 
 export default function Articles({ data }) {
   const { nodes } = data.allMdx;
-  console.log(nodes);
   return (
     <>
       {nodes.map(({ frontmatter }) => (
