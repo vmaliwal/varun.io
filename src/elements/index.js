@@ -3,5 +3,6 @@ export * from './NavElements';
 export * from './FooterElements';
 export * from './HeroElements';
 export * from './Rectangle';
-export * from './ArticleElements';
+export * from './ArticleCardElements';
 export * from './ArticlesNavigationElements';
+export * from './ArticleElements';
