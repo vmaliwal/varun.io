@@ -14,7 +14,8 @@ export default function Hero() {
       <RectangleWrapper color="#3fafb9">
         <HeroTextWrapper>
           <p className="text-primary">
-            I am Varun, Software Engineer and Generative Art enthusiast.
+            I am Varun, Software Engineering Leader and Generative Art
+            enthusiast.
           </p>
           <p className="text-secondary">
             I write about technology, leadership and random things I make,
@@ -23,6 +24,17 @@ export default function Hero() {
           </p>
           <HeroSketchWrapper>
             <P5Sketch art={Sketch} />
+            <p
+              style={{
+                fontSize: `0.5rem`,
+                paddingRight: `1.1rem`,
+                fontStyle: `italic`,
+                fontWeight: 700,
+              }}
+            >
+              Recreating Sol LeWitt's "A Square Divided Horizontally and
+              Vertically into Four Equal Parts 1982"
+            </p>
           </HeroSketchWrapper>
         </HeroTextWrapper>
       </RectangleWrapper>

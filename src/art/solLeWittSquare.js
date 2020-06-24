@@ -1,3 +1,8 @@
+/*
+  Recreating Sol LeWitt's `A Square Divided Horizontally and Vertically into Four Equal Parts, Each with a Different Direction of Alternating Parallel Bands of Lines 1982`
+
+  https://www.tate.org.uk/art/artworks/lewitt-a-square-divided-horizontally-and-vertically-into-four-equal-parts-each-with-a-p77013
+*/
 export default function Sketch(p5) {
   p5.setup = () => {
     p5.createCanvas(300, 300);
