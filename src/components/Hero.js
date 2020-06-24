@@ -30,6 +30,7 @@ export default function Hero() {
                 paddingRight: `1.1rem`,
                 fontStyle: `italic`,
                 fontWeight: 700,
+                paddingTop: `0.1rem`,
               }}
             >
               Recreating Sol LeWitt's "A Square Divided Horizontally and

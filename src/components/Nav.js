@@ -1,25 +1,24 @@
 import React from 'react';
-import { NavWrapper } from '../elements';
-import { Link } from 'gatsby';
+import { NavWrapper, AnimatedLink } from '../elements';
 
 export default function Nav() {
   return (
     <NavWrapper>
       <div>
-        <Link to="/" className="animated-link">
+        <AnimatedLink to="/">
           <div style={{ fontWeight: 1000 }}>varun.io</div>
-        </Link>
+        </AnimatedLink>
       </div>
       <div className="nav-right">
-        <Link to="/articles" className="animated-link">
+        <AnimatedLink to="/articles">
           <div>Articles</div>
-        </Link>
-        <Link to="/about" className="animated-link">
+        </AnimatedLink>
+        <AnimatedLink to="/about">
           <div>About</div>
-        </Link>
-        <Link to="/contact" className="animated-link">
+        </AnimatedLink>
+        <AnimatedLink to="/contact">
           <div>Contact</div>
-        </Link>
+        </AnimatedLink>
       </div>
     </NavWrapper>
   );

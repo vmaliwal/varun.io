@@ -1,6 +1,5 @@
 import React from 'react';
-import { ArticlesNavigationWrapper } from '../elements';
-import { Link } from 'gatsby';
+import { ArticlesNavigationWrapper, AnimatedLink } from '../elements';
 
 export default function ArticlesNavigation() {
   const VIEW_ALL = `View All >>`;
@@ -8,9 +7,9 @@ export default function ArticlesNavigation() {
   return (
     <ArticlesNavigationWrapper>
       <div>Latest Articles</div>
-      <Link to="/articles" className="animated-link">
+      <AnimatedLink to="/articles">
         <div>{VIEW_ALL}</div>
-      </Link>
+      </AnimatedLink>
     </ArticlesNavigationWrapper>
   );
 }

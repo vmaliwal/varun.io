@@ -18,7 +18,7 @@ export const ArticleTextWrapper = styled.div`
   & .article-title {
     grid-column: 2 / span 11;
     grid-row: 2 / 3;
-    color: #36ba7b;
+    /* color: #36ba7b; */
     line-height: 180%;
     font-weight: 600;
     font-size: 1.5rem;

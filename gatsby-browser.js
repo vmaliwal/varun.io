@@ -22,23 +22,6 @@ const GlobalStyles = createGlobalStyle`
     color: ${(props) => props.theme.colors.primaryText};
     font-display: swap;
   }
-
-  .animated-link, .animated-link:visited, .animated-link:link {
-    text-decoration: none;
-    color: ${(props) => props.theme.colors.primaryText};
-    & div {
-      transform: perspective(1px) translateZ(0);
-      transition-duration: 0.3s;
-      transition-property: transform;
-      transform-origin: 0 100%;
-    }
-    & div:hover,
-    & div:focus,
-    & div:active {
-      transform: skew(-10deg);
-    }
-  }
-
 `;
 
 const components = {
