@@ -88,6 +88,14 @@ export const AnimatedLink = styled((props) => <Link {...props} />)`
       transform: skew(-10deg);
     }
   }
+
+  @media ${(props) => props.theme.breakpoints.tablet} {
+    font-size: 1rem;
+  }
+
+  @media ${(props) => props.theme.breakpoints.mobile} {
+    font-size: 0.9rem;
+  }
 `;
 
 export const RectangleWrapper = styled.div`
@@ -95,6 +103,14 @@ export const RectangleWrapper = styled.div`
   border-radius: 10px;
   width: 100vw;
   box-shadow: 0.6rem 0.6rem 0px ${(props) => getColor(props)};
+
+  @media ${(props) => props.theme.breakpoints.tablet} {
+    box-shadow: 0.4rem 0.4rem 0px ${(props) => getColor(props)};
+  }
+
+  @media ${(props) => props.theme.breakpoints.mobile} {
+    box-shadow: 0.3rem 0.3rem 0px ${(props) => getColor(props)};
+  }
 `;
 
 function getColor(props) {

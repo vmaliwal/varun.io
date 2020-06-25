@@ -123,26 +123,6 @@ export default function Sketch(p5) {
         bottom3.y[j] || bottom3.y[0]
       );
     }
-
-    /*
-    for (let i = 0; i < width / 2; i += 10) {
-      p5.line(
-        coordinates3.x1 + i,
-        coordinates3.y1,
-        coordinates3.x3,
-        coordinates3.y3 - i
-      );
-    }
-
-    for (let i = 0; i < width / 2; i += 10) {
-      p5.line(
-        coordinates3.x1,
-        coordinates3.y1 + i,
-        coordinates3.x3 - i,
-        coordinates3.y3
-      );
-    }
-    */
   };
 
   function Rectangle(x, y, sideX, sideY = sideX) {

@@ -24,15 +24,7 @@ export default function Hero() {
           </p>
           <HeroSketchWrapper>
             <P5Sketch art={Sketch} />
-            <p
-              style={{
-                fontSize: `0.5rem`,
-                paddingRight: `1.1rem`,
-                fontStyle: `italic`,
-                fontWeight: 700,
-                paddingTop: `0.1rem`,
-              }}
-            >
+            <p>
               Recreating Sol LeWitt's "A Square Divided Horizontally and
               Vertically into Four Equal Parts 1982"
             </p>
