@@ -21,6 +21,15 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${(props) => props.theme.colors.body};
     color: ${(props) => props.theme.colors.primaryText};
     font-display: swap;
+
+    @media ${(props) => props.theme.breakpoints.tablet} {
+      font-size: 15px;
+    }
+
+    @media ${(props) => props.theme.breakpoints.mobile} {
+      font-size: 14px;
+    }
+
   }
 `;
 

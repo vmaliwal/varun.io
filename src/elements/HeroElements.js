@@ -14,9 +14,10 @@ export const HeroWrapper = styled.div`
   }
 
   @media ${(props) => props.theme.breakpoints.mobile} {
-    grid-column: 2 / span 12;
+    grid-column: 1 / span 14;
     grid-row: 2 / 13;
     min-height: 5rem;
+    margin-left: 0.25rem;
   }
 `;
 
@@ -27,7 +28,7 @@ export const HeroTextWrapper = styled.div`
   grid-template-rows: repeat(8, 0.5fr);
   min-height: 11rem;
   @media ${(props) => props.theme.breakpoints.tablet} {
-    grid-template-rows: repeat(7, 0.5fr);
+    grid-template-rows: repeat(13, 0.5fr);
   }
   @media ${(props) => props.theme.breakpoints.mobile} {
     grid-template-rows: repeat(7, 0.5fr);
@@ -42,15 +43,14 @@ export const HeroTextWrapper = styled.div`
     font-size: 2rem;
 
     @media ${(props) => props.theme.breakpoints.tablet} {
-      grid-column: 2 / span 6;
+      grid-column: 2 / span 10;
       grid-row: 2 / span 3;
-      font-size: 1.7rem;
     }
 
     @media ${(props) => props.theme.breakpoints.mobile} {
       grid-column: 2 / span 10;
       grid-row: 1 / span 3;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
     }
   }
 
@@ -63,9 +63,8 @@ export const HeroTextWrapper = styled.div`
     font-size: 1rem;
 
     @media ${(props) => props.theme.breakpoints.tablet} {
-      grid-column: 2 / span 6;
-      grid-row: 6 / span 3;
-      font-size: 0.9rem;
+      grid-column: 2 / span 10;
+      grid-row: 12 / span 2;
     }
 
     @media ${(props) => props.theme.breakpoints.mobile} {
@@ -81,7 +80,10 @@ export const HeroSketchWrapper = styled.div`
   margin-left: 1rem;
 
   @media ${(props) => props.theme.breakpoints.tablet} {
-    grid-row: 2 / span 7;
+    grid-column: 4 / span 5;
+    grid-row: 5 / span 6;
+    /* grid-row: 2 / span 7; */
+    /* display: none; */
   }
 
   @media ${(props) => props.theme.breakpoints.mobile} {
@@ -97,7 +99,7 @@ export const HeroSketchWrapper = styled.div`
 
     @media ${(props) => props.theme.breakpoints.tablet} {
       font-size: 0.6rem;
-      padding-right: 0.7rem;
+      padding-right: 1.66rem;
     }
   }
 `;

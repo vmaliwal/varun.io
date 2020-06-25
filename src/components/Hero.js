@@ -20,7 +20,7 @@ export default function Hero() {
           <p className="text-secondary">
             I write about technology, leadership and random things I make,
             obeserve or react to. Currently I am looking for Engineering Manager
-            positions.
+            positions worldwide.
           </p>
           <HeroSketchWrapper>
             <P5Sketch art={Sketch} />

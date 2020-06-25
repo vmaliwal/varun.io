@@ -6,6 +6,15 @@ export const ArticleCardWrapper = styled.div`
   min-height: 11rem;
   margin-bottom: 0.6rem;
   margin-right: 0.6rem;
+
+  @media ${(props) => props.theme.breakpoints.tablet} {
+    grid-column: 2 / span 10;
+  }
+
+  @media ${(props) => props.theme.breakpoints.mobile} {
+    grid-column: 1 / span 14;
+    margin-left: 0.25rem;
+  }
 `;
 
 export const ArticleTextWrapper = styled.div`
@@ -18,10 +27,17 @@ export const ArticleTextWrapper = styled.div`
   & .article-title {
     grid-column: 2 / span 11;
     grid-row: 2 / 3;
-    /* color: #36ba7b; */
     line-height: 180%;
     font-weight: 600;
     font-size: 1.5rem;
+
+    @media ${(props) => props.theme.breakpoints.tablet} {
+      /* grid-column: 2 / span 6; */
+    }
+
+    @media ${(props) => props.theme.breakpoints.mobile} {
+      grid-row: 1 / span 3;
+    }
   }
 
   & .article-excerpt {
@@ -31,6 +47,13 @@ export const ArticleTextWrapper = styled.div`
     line-height: 180%;
     font-weight: 600;
     font-size: 0.9rem;
+    @media ${(props) => props.theme.breakpoints.tablet} {
+      /* grid-column: 2 / span 6; */
+    }
+
+    @media ${(props) => props.theme.breakpoints.mobile} {
+      grid-row: 3 / span 3;
+    }
   }
 
   & .article-date {
