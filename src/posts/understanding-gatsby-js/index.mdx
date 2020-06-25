@@ -1,0 +1,48 @@
+---
+title: Why I chose Gatsby
+slug: choosing-gatsby-js
+date: 2020-06-25
+excerpt: Dabbling with Gatsby and my reason for choosing it for this website.
+featuredImage: feature-image.jpg
+posted: true
+---
+
+import ExternalLink from '../../components/ExternalLink';
+
+
+Hi and welcome to my website. I've had fun building this website with <ExternalLink href="https://gatsby.org">Gatsby</ExternalLink> and I am still exploring benefits and pitfalls as I add new features. Overall I am highly satisfied so far with my decision and there are no major downsides I've experienced. I try my best in this guide to dumb down my reasoning for choosing Gatsby. This will be updated regulary as I make more progress.
+
+## What's GatsbyJS?
+
+The official marketing message summerizes it pretty well -- "Gatsby is a free and open source framework based on React that helps developers build blazing fast websites and apps".
+
+The definition is pretty easy to understand but let's break down this message, especially understand how it can help build blazing fast website.
+
+## Blazing fast website or how Gatsby helps build blazing fast website?
+
+The core principal that drives Gatsby's popularity is it let developers render HTML pages on the server, also called as Server-Side Rendering (SSR), rather than browser, which makes it fast. The data to be displayed is built on server and stored as simple HTML pages, so what browser is rendering is a static page.
+
+To achieve this Gatsby uses React's Server Side Rendering feature that enables it to render components to static markup during the build process.
+
+My reasons to choose Gatsby was SSR, my curiosity to learn GraphQL, and excellent documentation. Yes, Gatsby ships with support for GraphQL. Fetching of data to power this static site is achived using GraphQL, which makes static site generator not so static.
+
+Coupled with SSR, Gatsby supports an entire ecosystem of different types of open source plugins that can ease development time and provide tons of excellent features out of the box.
+
+
+## The plugin ecosystem
+
+Gatsby supports plugins for <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-image/">loading optimized images</ExternalLink>, to generating a <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/">sitemap</ExternalLink>, or adding an <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-offline/">offline support</ExternalLink>. 
+
+Offline plugin along with <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/">manifest</ExternalLink> enables developers to build Progressive Web Apps (PWAs) -- these are apps that are delivered through web rather than native app stores (like the ones for iOS and andriod), and looks just like website.
+
+## MDX Support
+
+I've always been fan of markdown files (who isn't, right?) but what you think about markdown + react component support? Mind blown.. That exactly was my feeling when I discovered it. This article is generated using MDX. It makes this static markdown file dynamic. 
+
+## GraphQL Support
+
+GraphQL adds support for data layer and during build process data for this blog is made available using graphql queries. It is an important feature for me because if I decide to move this static post on to a headless CMS, say Contentful, I can continue using GraphQL to fetch data from Contentful (by using their plugin), and reuse the components. Robin Wieruch summerizes <ExternalLink href="https://www.robinwieruch.de/why-graphql-advantages-disadvantages-alternatives">benifits of GraphQL</ExternalLink> pretty well.
+
+## Not so static website
+
+If I want to add some logic on the client side (a newsletter subscription or authentication), it is possible. Once the site is rendered on browser SPA frameworks like react can function as usual and can be used for adding additional business logic on the client side. This website right now uses <ExternalLink href="https://p5js.org/">p5js</ExternalLink> to experiment with creative coding. So if you see some geometric/abstract art in posts that means it is most likely powered by p5js, and being rendered on browser on HTML5 canvas.
