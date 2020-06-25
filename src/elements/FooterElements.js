@@ -6,7 +6,8 @@ export const FooterWrapper = styled.footer`
   margin-top: 3rem;
   margin-bottom: -10rem;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  /* justify-content: space-between; */
 
   @media ${(props) => props.theme.breakpoints.tablet} {
     grid-column: 2 / span 10;
@@ -15,17 +16,24 @@ export const FooterWrapper = styled.footer`
   @media ${(props) => props.theme.breakpoints.mobile} {
     min-height: 1rem;
     grid-column: 2 / span 12;
+    justify-content: center;
+    flex-direction: row;
   }
 `;
 
 export const FooterSocialWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+  flex-direction: row;
   & p {
     font-size: 0.8rem;
-    align-self: center;
+  }
+  @media ${(props) => props.theme.breakpoints.tablet} {
+  }
+  @media ${(props) => props.theme.breakpoints.mobile} {
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 
