@@ -24,6 +24,7 @@ export default function Footer() {
   return (
     <FooterWrapper>
       <FooterSocialWrapper>
+        <p>&#169; {new Date().getFullYear()} Varun Maliwal</p>
         <FooterSocialIcons>
           <a
             href="https://linkedin.com/in/varun-maliwal"

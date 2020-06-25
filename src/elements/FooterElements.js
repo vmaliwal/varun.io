@@ -2,33 +2,35 @@ import styled from 'styled-components';
 
 export const FooterWrapper = styled.footer`
   grid-column: 3 / span 10;
-  min-height: 11.25rem;
-  padding: 3rem 0;
+  min-height: 1rem;
+  margin-top: 3rem;
+  margin-bottom: -10rem;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
 
   @media ${(props) => props.theme.breakpoints.tablet} {
-    grid-column: 2 / span 6;
+    grid-column: 2 / span 10;
+  }
+
+  @media ${(props) => props.theme.breakpoints.mobile} {
+    min-height: 1rem;
+    grid-column: 2 / span 12;
   }
 `;
 
 export const FooterSocialWrapper = styled.div`
   display: flex;
-  flex-wrap: wrap;
-  align-items: right;
-
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   & p {
-    text-align: center;
-    flex: 0 0 100%;
+    font-size: 0.8rem;
+    align-self: center;
   }
 `;
 
 export const FooterSocialIcons = styled.div`
-  flex: 0 0 100%;
-  margin-bottom: 2rem;
-  align-items: flex-end;
-
+  margin: 2rem 0;
   & img {
     height: 22px;
     padding: 0 1rem;
