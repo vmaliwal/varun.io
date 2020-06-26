@@ -132,4 +132,9 @@ export const ArticleWrapper = styled.main`
     text-align: left;
     padding: 0.5rem;
   }
+
+  a {
+    color: ${(props) => props.theme.colors.primaryBorder};
+    font-weight: 700;
+  }
 `;

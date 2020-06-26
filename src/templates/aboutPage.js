@@ -1,5 +1,5 @@
 import React from 'react';
-import { AboutWrapper } from '../elements';
+import { ArticleWrapper } from '../elements';
 import { graphql } from 'gatsby';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Container from '../components/Container';
@@ -9,9 +9,9 @@ export default function about({ data }) {
 
   return (
     <Container>
-      <AboutWrapper>
+      <ArticleWrapper>
         <MDXRenderer>{body}</MDXRenderer>
-      </AboutWrapper>
+      </ArticleWrapper>
     </Container>
   );
 }
