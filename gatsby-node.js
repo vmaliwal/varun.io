@@ -33,7 +33,7 @@ exports.createPages = async function ({ actions, graphql }) {
       },
     });
   });
-  posts.forEach(({ frontmatter, id }) => {
+  posts.map(({ frontmatter, id }) => {
     const slug = frontmatter.slug;
     createPage({
       path: slug,
@@ -41,4 +41,15 @@ exports.createPages = async function ({ actions, graphql }) {
       context: { id },
     });
   });
+
+  posts
+    .filter(({ frontmatter }) => frontmatter.slug.toLowerCase() === `about`)
+    .map(({ frontmatter, id }) => {
+      const slug = frontmatter.slug;
+      createPage({
+        path: slug,
+        component: path.resolve('./src/templates/aboutPage.js'),
+        context: { id },
+      });
+    });
 };

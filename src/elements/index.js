@@ -6,3 +6,4 @@ export * from './ArticleCardElements';
 export * from './ArticlesNavigationElements';
 export * from './ArticleElements';
 export * from './CommonElements';
+export * from './AboutElements';
