@@ -64,17 +64,4 @@ export const ArticleTextWrapper = styled.div`
     font-weight: 600;
     font-size: 0.6rem;
   }
-
-  & .article-title {
-    transform: perspective(1px) translateZ(0);
-    transition-duration: 0.3s;
-    transition-property: transform;
-    transform-origin: 0 100%;
-  }
-
-  & .article-title:hover,
-  & .article-title:focus,
-  & .article-title:active {
-    transform: skew(-10deg);
-  }
 `;
