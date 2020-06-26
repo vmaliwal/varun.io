@@ -29,20 +29,6 @@ const GlobalStyles = createGlobalStyle`
     @media ${(props) => props.theme.breakpoints.mobile} {
       font-size: 14px;
     }
-  
-    & a {
-      transform: perspective(1px) translateZ(0);
-      transition-duration: 0.3s;
-      transition-property: transform;
-      transform-origin: 0 100%;
-    }
-
-    & a:hover, 
-    & a:focus, 
-    & a:active {
-      transform: skew(-10deg);
-    } 
-
   }
 `;
 
