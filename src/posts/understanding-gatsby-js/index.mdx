@@ -7,10 +7,10 @@ featuredImage: feature-image.jpg
 posted: true
 ---
 
-import ExternalLink from '../../components/ExternalLink';
+import { AnimatedLink } from '../../elements';
 
 
-Hi and welcome to my website. I've had fun building this website with <ExternalLink href="https://gatsby.org">Gatsby</ExternalLink> and I am still exploring benefits and pitfalls as I add new features. Overall I am highly satisfied so far with my decision and there are no major downsides I've experienced. I'll try my best in this guide to dumb down my reasoning for choosing Gatsby. This will be updated regulary as I make more progress.
+Hi and welcome to my website. I've had fun building this website with <AnimatedLink to="https://gatsby.org">Gatsby</AnimatedLink> and I am still exploring benefits and pitfalls as I add new features. Overall I am highly satisfied so far with my decision and there are no major downsides I've experienced. I'll try my best in this guide to dumb down my reasoning for choosing Gatsby. This will be updated regulary as I make more progress.
 
 ## What's GatsbyJS?
 
@@ -31,9 +31,9 @@ Coupled with SSR, Gatsby supports an entire ecosystem of different types of open
 
 ## The plugin ecosystem
 
-Gatsby supports plugins for <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-image/">loading optimized images</ExternalLink>, to generating a <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/">sitemap</ExternalLink>, or adding an <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-offline/">offline support</ExternalLink>. 
+Gatsby supports plugins for <AnimatedLink to="https://www.gatsbyjs.org/packages/gatsby-image/">loading optimized images</AnimatedLink>, to generating a <AnimatedLink to="https://www.gatsbyjs.org/packages/gatsby-plugin-sitemap/">sitemap</AnimatedLink>, or adding an <AnimatedLink to="https://www.gatsbyjs.org/packages/gatsby-plugin-offline/">offline support</AnimatedLink>. 
 
-Offline plugin along with <ExternalLink href="https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/">manifest</ExternalLink> enables developers to build Progressive Web Apps (PWAs) -- these are apps that are delivered through web rather than native app stores (like the ones for iOS and andriod), and looks just like website.
+Offline plugin along with <AnimatedLink to="https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/">manifest</AnimatedLink> enables developers to build Progressive Web Apps (PWAs) -- these are apps that are delivered through web rather than native app stores (like the ones for iOS and andriod), and looks just like website.
 
 ## MDX Support
 
@@ -41,8 +41,8 @@ I've always been fan of markdown files (who isn't, right?) but what you think ab
 
 ## GraphQL Support
 
-GraphQL adds support for data layer and during build process data for this blog is made available using graphql queries. It is an important feature for me because if I decide to move this static post on to a headless CMS, say Contentful, I can continue using GraphQL to fetch data from Contentful (by using their plugin), and reuse the components. Robin Wieruch summerizes <ExternalLink href="https://www.robinwieruch.de/why-graphql-advantages-disadvantages-alternatives">benifits of GraphQL</ExternalLink> pretty well.
+GraphQL adds support for data layer and during build process data for this blog is made available using graphql queries. It is an important feature for me because if I decide to move this static post on to a headless CMS, say Contentful, I can continue using GraphQL to fetch data from Contentful (by using their plugin), and reuse the components. Robin Wieruch summerizes <AnimatedLink to="https://www.robinwieruch.de/why-graphql-advantages-disadvantages-alternatives">benifits of GraphQL</AnimatedLink> pretty well.
 
 ## Not so static website
 
-If I want to add some logic on the client side (a newsletter subscription or authentication), it is possible. Once the site is rendered on browser SPA frameworks like react can function as usual and can be used for adding additional business logic on the client side. This website right now uses <ExternalLink href="https://p5js.org/">p5js</ExternalLink> to experiment with creative coding. So if you see some geometric/abstract art in posts that means it is most likely powered by p5js, and being rendered on browser on HTML5 canvas.
+If I want to add some logic on the client side (a newsletter subscription or authentication), it is possible. Once the site is rendered on browser SPA frameworks like react can function as usual and can be used for adding additional business logic on the client side. This website right now uses <AnimatedLink to="https://p5js.org/">p5js</AnimatedLink> to experiment with creative coding. So if you see some geometric/abstract art in posts that means it is most likely powered by p5js, and being rendered on browser on HTML5 canvas.

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import ExternalLink from '../components/ExternalLink';
 
 export const P = styled.p`
   margin: ${(props) => (props.margin ? props.margin : 0)};
@@ -71,17 +72,27 @@ export const H2 = styled.h2`
   margin: ${(props) => (props.margin ? props.margin : 0)};
 `;
 
-export const AnimatedLink = styled((props) => <Link {...props} />)`
+export const AnimatedLink = styled((props) => {
+  const { to } = props;
+  return to.startsWith('http') ? (
+    <ExternalLink {...props} />
+  ) : (
+    <Link {...props} />
+  );
+})`
+} 
   &:visited,
   &:link {
     text-decoration: none;
     color: ${(props) => getColor(props)};
     & div {
+      display: inline-block;
       transform: perspective(1px) translateZ(0);
       transition-duration: 0.3s;
       transition-property: transform;
       transform-origin: 0 100%;
     }
+
     & div:hover,
     & div:focus,
     & div:active {

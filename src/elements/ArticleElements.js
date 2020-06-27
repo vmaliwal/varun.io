@@ -134,7 +134,7 @@ export const ArticleWrapper = styled.main`
   }
 
   a {
-    color: ${(props) => props.theme.colors.primaryBorder};
+    color: ${(props) => props.theme.colors.primaryBorder} !important;
     font-weight: 700;
   }
 `;
