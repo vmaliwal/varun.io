@@ -4,6 +4,7 @@ import Container from '../components/Container';
 import Hero from '../components/Hero';
 import Articles from '../components/Articles';
 import ArticlesNavigation from '../components/ArticlesNavigation';
+import ExternalLink from '../components/ExternalLink';
 
 /**
  * TODOS
@@ -19,6 +20,8 @@ import ArticlesNavigation from '../components/ArticlesNavigation';
  * Fetch data from MDX file
  * Change text on index page to be added to site metadata
  */
+
+import { AnimatedLink } from '../elements';
 
 export default function Home() {
   const data = useStaticQuery(graphql`
@@ -41,11 +44,20 @@ export default function Home() {
   `);
 
   return (
-    <Container>
-      <Hero />
-      <ArticlesNavigation />
-
-      <Articles data={data} />
-    </Container>
+    <>
+      <marquee
+        style={{ marginTop: '0.3rem', color: 'grey', fontSize: '0.8rem' }}
+      >
+        This site is a wip, you can{' '}
+        <AnimatedLink to="https://github.com/vmaliwal/varun.io">
+          follow progress
+        </AnimatedLink>
+      </marquee>
+      <Container>
+        <Hero />
+        <ArticlesNavigation />
+        <Articles data={data} />
+      </Container>
+    </>
   );
 }
