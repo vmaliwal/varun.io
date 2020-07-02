@@ -15,6 +15,7 @@ module.exports = {
     article: false,
   },
   plugins: [
+    'gatsby-plugin-advanced-sitemap',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
