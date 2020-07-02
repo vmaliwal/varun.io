@@ -4,24 +4,8 @@ import Container from '../components/Container';
 import Hero from '../components/Hero';
 import Articles from '../components/Articles';
 import ArticlesNavigation from '../components/ArticlesNavigation';
-import ExternalLink from '../components/ExternalLink';
-
-/**
- * TODOS
- * Add items to navigation header √
- * Add margins to header √
- * Fix footer according to design
- * Add copyright, gatsby etc text to footer
- * Add generative art on index page
- * Optimize for mobile, tablet
- * Create additional pages for About, Articles & Contact
- * Create individual article page
- * Add RSS functionality
- * Fetch data from MDX file
- * Change text on index page to be added to site metadata
- */
-
 import { AnimatedLink } from '../elements';
+import Seo from '../components/Seo';
 
 export default function Home() {
   const data = useStaticQuery(graphql`
@@ -54,6 +38,7 @@ export default function Home() {
         </AnimatedLink>
       </marquee>
       <Container>
+        <Seo />
         <Hero />
         <ArticlesNavigation />
         <Articles data={data} />

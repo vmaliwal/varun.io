@@ -5,6 +5,15 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: `varun.io`,
+    titleTemplate: `%s . A Personal Webpage of Varun Maliwal`,
+    description: `A personal page of Varun Maliwal about leadership, tech, creative coding & generative art`,
+    url: `https://varun.io`,
+    author: `Varun Maliwal`,
+    twitterUsername: `@vroom_`,
+    article: false,
+  },
   plugins: [
     {
       resolve: `gatsby-source-filesystem`,
