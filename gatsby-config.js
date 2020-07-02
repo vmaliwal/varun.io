@@ -9,13 +9,13 @@ module.exports = {
     title: `varun.io`,
     titleTemplate: `%s . A Personal Webpage of Varun Maliwal`,
     description: `A personal page of Varun Maliwal about leadership, tech, creative coding & generative art`,
-    url: `https://varun.io`,
+    siteUrl: `https://varun.io`,
     author: `Varun Maliwal`,
     twitterUsername: `@vroom_`,
     article: false,
   },
   plugins: [
-    'gatsby-plugin-advanced-sitemap',
+    `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {

@@ -13,7 +13,7 @@ export default function Seo({ title, description, keywords, article }) {
           author
           title
           description
-          url
+          siteUrl
           titleTemplate
           twitterUsername
         }
@@ -28,7 +28,7 @@ export default function Seo({ title, description, keywords, article }) {
   const { pathname } = useLocation();
   const metaTitle = title || siteMetadata.article;
   const metaDescription = description || siteMetadata.description;
-  const metaUrl = `${siteMetadata.url}${pathname}`;
+  const metaUrl = `${siteMetadata.siteUrl}${pathname}`;
   const metaKeywords = keywords || [
     'blog',
     'gatsby',
