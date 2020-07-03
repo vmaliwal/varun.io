@@ -1,0 +1,295 @@
+---
+title: Recreating Sol LeWitt's Art in Javascript
+slug: sol-lewitt-rectangle-javascript
+date: 2020-07-02
+excerpt: Square
+posted: false
+---
+
+import P5Sketch from '../../components/P5Sketch';
+import Sketch0 from './step-0-sketch';
+import Sketch1 from './step-1-sketch';
+import Sketch2 from './step-2-sketch';
+import Sketch3 from './step-3-sketch';
+import FinalSketch from './step-4-sketch';
+
+
+The goal of this post is to understand how to recreate Sol LeWitt's famous artwork in Javascript. We will use p5js, a popular tool for creative coding. Let's get started.
+
+The original artwork is fairly easy to recreate. It has an outer rectangle and four quadrants are painted with horizontal, vertical and diagonal line.
+
+It requires basic math that I learnt back in school, and I had to of course brush up some of the skills. It felt quiet good to revisit and actually use to create something.
+
+We will eventually understand how to draw a rectangle on canvas and more specifically how to draw lines between two edges of rectangle.
+
+But before that let's understand what is a point in 2D space or a plane?
+
+
+## Point
+
+A point is a precise location on a surface or a plane, usually represented by a dot. In our code we will represent point as an Array [x, y].
+
+## Line
+
+A line is formed when two points located on a 2D plane joined by a line segment. A straight line is the shortest distance between two points.
+
+We can use `p5.line(x1, y1, x2, y2)`
+
+We will create a wrapper function that will eventually call p5's line method.
+
+```javascript
+
+function drawLine(pointA, pointB) {
+  p5.line(pointA[0], pointA[1], pointB[0], pointB[1]);
+}
+
+```
+
+## Quadrilateral
+
+Quadrilateral literally means 4 sides. A more exact definition from wikipedia explains it further --  "a quadrilateral is a polygon with four edges (or sides) and four vertices or corners". Some examples include Rectangle, Square, Rhombus, etc.
+
+So what makes Square, Rectangle and other Quadrilaterals different from each other? It's the interior angle & length of the sides compared with each other. For example, all sides of a Rectangle are joined at an angle of 90 degrees making two parallel sides equal, while for square all sides are equal and the interior angle is always 90 degree.
+
+## Drawing a rectanle on canvas in Javascript
+
+Let's setup our canvas and draw a basic rectangle with p5's `rect(x, y, width, height)` method.
+
+```javascript
+export default function Sketch(p5) {
+  p5.setup = () => {
+    p5.createCanvas(300, 300);
+    p5.noFill();
+    p5.noLoop();
+  };
+
+  p5.draw = () => {
+    p5.background(0);
+    p5.stroke(255);
+
+    // leave 10% margin on all sides
+    const margin = 0.1;
+    const x = p5.width * margin;
+    const y = p5.height * margin;
+
+    // adjust width & height based on margin
+    let w = p5.width - 2 * x;
+    let h = p5.height - 2 * y;
+
+    p5.rect(x, y, w, h);
+  };
+}
+
+```
+
+Above code will produce a canvas of size 300x300 and rectangle (actually square) adjusted by margins.
+
+<P5Sketch art={Sketch0}/>
+
+
+If we think about it every edge is a straight line between two points on a plane, and each edge has start and end coordinate. 
+
+Let's create a function called as `Rectangle` that can hold values of all the coordinates of the edges of rectangle and some helper functions. We will represent coordinates of our rectangle as points _a, b, c, d_ 
+
+```javascript
+export default function Sketch(p5) {
+...
+
+  function Rectangle(x, y, width, height) {
+
+    return {
+      coordinates,
+      draw,
+    }
+
+    function coordinates() {
+      // adjust width & height as our scale might not be at zero
+      const w = x + width;
+      const h = y + height;
+
+      return {
+        a: [x, y],
+        b: [w, y],
+        c: [w, h],
+        d: [x, h],
+      };
+    }
+
+    function draw() {
+      p5.rect(x, y, width, height);
+    }
+  }
+
+...
+}
+
+```
+
+## Locating a point on a straight line at _K_ distance
+
+There's a convinent mathematical formula to find coordinates of a point located exactly at k distance on a line segment.
+
+_P(x,y)=(x1 + k(x2 - x1), y1 + k(y2 - y1))_
+
+where _k_ is fractional part of distance.
+
+So for example to find coordinates a point located exactly at midpoint, we would use k as 1/2 or 0.5.
+
+We can write equivalent Javascript as - 
+
+```javascript
+
+// find coordinates of a point on line at distance k
+function pointCoordinatesOnLine(pointA, pointB, k) {
+  const x = pointA[0] + k * (pointB[0] - pointA[0]);
+  const y = pointA[1] + k * (pointB[1] - pointA[1]);
+
+  return [x, y];
+}
+
+```
+
+Now using this method we can add another helper method in our Rectangle function to find center coordinates of all the edges of the rectangle.
+
+```javascript
+
+function Rectangle(x, y, width, height) {
+
+  return {
+    centerCoordinates,
+    ...
+  }
+
+  ...
+
+  function centerCoordinates(midpoints = {}) {
+    // represent center coordinates of a perticular side
+    const midpointMapping = {
+      ab: 'p',
+      bc: 'q',
+      cd: 'r',
+      da: 's',
+      ba: 'p',
+      cb: 'q',
+      dc: 'r',
+      ad: 's',
+    };
+
+    const calculateMidpoint = (point1, point2) => {
+      let [kA, pointA] = point1;
+      let [kB, pointB] = point2;
+
+      const edge = `${kA}${kB}`;
+
+      midpoints[midpointMapping[edge]] = pointCoordinatesOnLine(
+        pointA,
+        pointB,
+        0.5
+      );
+
+      return point2;
+    };
+
+    const coordinatesArray = Object.entries(coordinates());
+    const sideDA = [
+      coordinatesArray[0],
+      coordinatesArray[coordinatesArray.length - 1],
+    ];
+
+    [...coordinatesArray, ...sideDA].reduce((point1, point2) =>
+      calculateMidpoint(point1, point2)
+    );
+
+    return midpoints;
+  }
+
+  ...
+
+}
+
+```
+
+Now we are ready to draw our rectangle on canvas.
+
+<P5Sketch art={Sketch1} />
+
+Let's add lines to the midpoints using the co-ordinates we calculated, and divide our rectangle into four parts. Midpoint coordinates are represented as _p, q, r, s, o_. _o_ represents center coordiantes of rectangle.
+
+```javascript
+
+p5.draw = () => {
+
+...
+
+    const { a, b, c, d } = rectangle.coordinates();
+    const { p, q, r, s } = rectangle.centerCoordinates();
+    const o = [x + w / 2, y + h / 2];
+
+    drawLine(p, r);
+    drawLine(q, s);
+
+...
+
+}
+
+
+```
+
+<P5Sketch art={Sketch2} />
+
+## Connecting edges
+
+Now we need to draw horizontal, vertical and diagonal lines. We already have everything in place to draw these lines. We have all the coordinates of the rectangle and we can use our method `pointCoordinatesOnLine` to find coordinates on each side at a certain distance on our rectangle.
+
+```javascript
+
+// helper function to draw lines between two
+// edges every k distance
+
+p5.draw = () => {
+  ...
+
+  drawLines([a, p], [s, o], 12);
+
+}
+
+...
+
+function drawLines(edge1, edge2, k) {
+  const [pointA, pointB] = edge1;
+  const [pointC, pointD] = edge2;
+
+  for (let i = 0; i < k; ++i) {
+    const [x1, y1] = pointCoordinatesOnLine(pointA, pointB, i / k);
+    const [x2, y2] = pointCoordinatesOnLine(pointC, pointD, i / k);
+    drawLine([x1, y1], [x2, y2]);
+  }
+}
+
+...
+
+```
+<P5Sketch art={Sketch3} />
+
+Awesome! We are getting there. Let's draw rest of the lines and finish our sketch.
+
+```javascript
+
+p5.draw = () => {
+  ...
+
+  drawLines([a, p], [s, o], 12);
+  drawLines([p, o], [b, q], 12);
+
+  drawLines([s, o], [s, d], 12);
+  drawLines([d, r], [o, r], 12);
+
+  drawLines([q, c], [q, o], 12);
+  drawLines([c, r], [o, r], 12);
+
+}
+```
+
+Our final sketch looks super close to the artwork. Yay!
+
+<P5Sketch art={FinalSketch} />
