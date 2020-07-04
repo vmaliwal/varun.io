@@ -49,7 +49,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`IBM Plex Mono`, `IBM Plex Sans`],
+        fonts: [`IBM Plex Mono`],
         display: 'swap',
       },
     },

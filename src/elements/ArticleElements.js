@@ -23,13 +23,13 @@ export const ArticleWrapper = styled.main`
   }
 
   h1 {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     line-height: 2.5rem;
     font-weight: 400;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     line-height: 1.875rem;
     font-weight: 400;
   }
@@ -63,6 +63,7 @@ export const ArticleWrapper = styled.main`
     line-height: 1.875rem;
     font-weight: 400;
     margin-top: 2rem;
+    /* font-family: 'Inter'; */
   }
   a {
     text-decoration: underline;
@@ -96,11 +97,10 @@ export const ArticleWrapper = styled.main`
   }
 
   code {
-    font-size: 1rem;
-    line-height: 1.875rem;
-    padding: 0.2rem 0.4rem;
-    color: ${(props) => props.theme.colors.primaryText};
-    background-color: #ddd;
+    padding: 0.3rem;
+    border-radius: 0.3rem;
+    color: rgb(215, 58, 73);
+    background-color: rgb(246, 248, 250);
   }
 
   hr {
@@ -136,5 +136,6 @@ export const ArticleWrapper = styled.main`
   a {
     color: ${(props) => props.theme.colors.primaryBorder} !important;
     font-weight: 700;
+    border-bottom: 2px solid ${(props) => props.theme.colors.primaryBorder};
   }
 `;
