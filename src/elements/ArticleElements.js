@@ -98,9 +98,9 @@ export const ArticleWrapper = styled.main`
   code {
     font-size: 1rem;
     line-height: 1.875rem;
-    padding: 0 0.3rem;
-    color: black;
-    background-color: grey;
+    padding: 0.2rem 0.4rem;
+    color: ${(props) => props.theme.colors.primaryText};
+    background-color: #ddd;
   }
 
   hr {
