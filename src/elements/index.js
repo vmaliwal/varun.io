@@ -7,3 +7,4 @@ export * from './ArticlesNavigationElements';
 export * from './ArticleElements';
 export * from './CommonElements';
 export * from './P5CanvasElements';
+export * from './ImageElements';

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const ArticleWrapper = styled.main`
-  grid-column: 3 / span 10;
-  grid-row: 2 / auto;
+  grid-column: 4 / span 8;
+  position: relative;
+  /* grid-row: 2 / auto; */
 
   @media ${(props) => props.theme.breakpoints.tablet} {
     grid-column: 2 / span 10;
@@ -100,7 +101,7 @@ export const ArticleWrapper = styled.main`
     padding: 0.3rem;
     border-radius: 0.3rem;
     color: rgb(215, 58, 73);
-    background-color: rgb(246, 248, 250);
+    background-color: rgb(250, 248, 245);
   }
 
   hr {

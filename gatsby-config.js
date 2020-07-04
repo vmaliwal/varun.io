@@ -6,8 +6,8 @@
 
 module.exports = {
   siteMetadata: {
-    title: `varun.io`,
-    titleTemplate: `%s . A Personal Webpage of Varun Maliwal`,
+    title: `A Personal Webpage of Varun Maliwal`,
+    titleTemplate: `%s - varun.io`,
     description: `A personal page of Varun Maliwal about leadership, tech, creative coding & generative art`,
     siteUrl: `https://varun.io`,
     author: `Varun Maliwal`,
