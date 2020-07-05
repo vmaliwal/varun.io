@@ -14,6 +14,7 @@
   padding: 1rem 0.75rem;
   border-radius: 0.25rem;
   background-color: rgb(250, 248, 245) !important;
+  word-wrap: break-word !important;
 }
 .gatsby-highlight pre[class*='language-']::before {
   background: black;

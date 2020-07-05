@@ -26,7 +26,7 @@ export const ArticleTextWrapper = styled.div`
 
   & .article-title {
     grid-column: 2 / span 11;
-    grid-row: 2 / 3;
+    grid-row: 2 / auto;
     line-height: 180%;
     font-weight: 600;
     font-size: 1.5rem;
@@ -36,7 +36,7 @@ export const ArticleTextWrapper = styled.div`
     }
 
     @media ${(props) => props.theme.breakpoints.mobile} {
-      grid-row: 1 / span 3;
+      grid-row: 1 / auto;
     }
   }
 
