@@ -20,6 +20,7 @@ export default function singleArticle({ data }) {
         title={frontmatter.title}
         description={frontmatter.excerpt}
         article={true}
+        keywords={frontmatter.tags}
       />
       {featureImage && (
         <FeatureImage
@@ -45,6 +46,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         slug
         title
+        tags
         featureImageText
         featureImage {
           childImageSharp {
