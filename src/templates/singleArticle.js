@@ -21,7 +21,12 @@ export default function singleArticle({ data }) {
         description={frontmatter.excerpt}
         article={true}
       />
-      {featureImage && <FeatureImage fluid={featureImage} />}
+      {featureImage && (
+        <FeatureImage
+          fluid={featureImage}
+          imgText={frontmatter.featureImageText}
+        />
+      )}
 
       <Article>
         <h1>{frontmatter.title}</h1>
@@ -40,6 +45,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         slug
         title
+        featureImageText
         featureImage {
           childImageSharp {
             fluid {

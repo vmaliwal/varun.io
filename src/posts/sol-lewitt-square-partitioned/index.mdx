@@ -1,14 +1,15 @@
 ---
-title: Recreating Sol LeWitt's Art in Javascript
-slug: sol-lewitt-rectangle-javascript
+title: Recreating Sol LeWitt's Famous Square Art in Javascript
+slug: sol-lewitt-square-art-javascript
 date: 2020-07-04
-excerpt: Square
+excerpt: Recreating famous artwork is its own fun, especially if we can generate via simple code
 posted: false
 featureImage: feature-image-sol-lewitt.jpg
+featureImageText: Source - tate.org.uk. Sol LeWitt's Square Art
 ---
 
 import P5Sketch from '../../components/P5Sketch';
-import {P5CanvasWrapper} from '../../elements'
+import { P5CanvasWrapper, AnimatedLink } from '../../elements';
 import Sketch0 from './step-0-sketch';
 import Sketch1 from './step-1-sketch';
 import Sketch2 from './step-2-sketch';
@@ -16,26 +17,31 @@ import Sketch3 from './step-3-sketch';
 import FinalSketch from './step-4-sketch';
 
 
-The goal of this post is to understand how to recreate Sol LeWitt's famous artwork in Javascript. We will use p5js, a popular tool for creative coding. Let's get started.
+I've been keeping myself a little busy lately to understand basic maths when I came across one of the artworks of Sol LeWitt.
 
-The original artwork is fairly easy to recreate. It has an outer rectangle and four quadrants are painted with horizontal, vertical and diagonal lines.
+The goal of this post is to understand how to recreate Sol LeWitt's <AnimatedLink to="https://www.tate.org.uk/art/artworks/lewitt-a-square-divided-horizontally-and-vertically-into-four-equal-parts-each-with-a-p77013">A Square Divided Horizontally and Vertically into Four Equal Parts</AnimatedLink> artwork in Javascript. We will use <AnimatedLink to="https://p5js.org">p5js</AnimatedLink>, a popular tool for creative coding. Let's get started!
 
-It requires basic math that I learnt back in school, and I had to of course brush up some of the skills. It felt quite good to revisit and actually use to create something.
+Please note that basic familiarity with p5js is necessary to understand some of the code. You can visit their documentation or checkout <AnimatedLink to="https://www.youtube.com/channel/UCvjgXvBlbQiydffZU7m1_aw">The Coding Train</AnimatedLink> youtube channel for an introduction.
+
+
+If you observe carefully the original art is fairly easy to recreate. It has an outer rectangle (actually square) split into four parts that are painted with horizontal, vertical and diagonal lines.
+
+To draw rectangle and lines between the edges, I had to revisit some of the basic concepts of <AnimatedLink to="https://www.khanacademy.org/math/algebra-home/alg-linear-eq-func">linear equations</AnimatedLink> that I learnt back in school. It felt quite good to understand the basics required to draw a line on a graph and actually use it to create this art.
 
 We will eventually understand how to draw a rectangle on canvas and more specifically how to draw lines between two edges of a rectangle.
 
-But before that let's understand what is a point in 2D space or a plane?
+But before that let's understand what is a point in 2D space or a plane.
 
 
 ## Point
 
-A Point is a precise location on a surface or a plane, usually represented by a dot. In our code we will represent point as an Array [x, y], for example `const pointA = [x, y]`.
+A Point is a precise location on a surface or a plane, usually designated by a dot. If we consider our 2D plane represented by X & Y axis then in our code we can use array of size 2 to denote a point, for example, `const point = [x, y]`.
 
 ## Line
 
 A Line is formed when two points located on a 2D plane joined by a line segment. A straight line is the shortest distance between two points.
 
-We can use `p5.line(x1, y1, x2, y2)`
+P5 has a handy method `line(x1, y1, x2, y2)` to draw a line between two points on a 2D plane. 
 
 We will create a wrapper function that will eventually call p5's line method.
 
@@ -51,11 +57,13 @@ function drawLine(pointA, pointB) {
 
 Quadrilateral literally means 4 sides. A more exact definition from wikipedia explains it further --  "a quadrilateral is a polygon with four edges (or sides) and four vertices or corners". Some examples include Rectangle, Square, Rhombus, etc.
 
-So what makes Square, Rectangle and other Quadrilaterals different from each other? It's the interior angle & length of the sides compared with each other. For example, all sides of a Rectangle are joined at an angle of 90 degrees making two parallel sides (width & height) equal, while for square all sides are equal and the interior angle is always 90 degree. So Square is a special case of Rectangle.
+So what makes Square, Rectangle and other Quadrilaterals different from each other? It's the interior angle & length of the sides compared with each other. For example, all sides of a Rectangle are joined at an angle of 90 degrees making two parallel sides (width & height) equal, while for square all sides are equal and the interior angle is always 90 degree. 
+
+Square is a special case of Rectangle, and therefore even though we will be drawing square we will call it a rectangle.
 
 ## Drawing a rectangle on canvas in Javascript
 
-Let's setup our canvas and draw a basic rectangle with p5's `rect(x, y, width, height)` method.
+Let's first setup our canvas and draw a basic rectangle with p5's `rect(x, y, width, height)` method. 
 
 ```javascript
 export default function Sketch(p5) {
@@ -80,20 +88,24 @@ export default function Sketch(p5) {
 
     p5.rect(x, y, w, h);
   };
+
+  function drawLine(pointA, pointB) {
+    p5.line(pointA[0], pointA[1], pointB[0], pointB[1]);
+  }
 }
 
 ```
 
-Above code will produce a canvas of size 300x300 and rectangle (actually square) adjusted by margins.
+This code will produce a canvas of size 300 x 300 and rectangle (actually square) adjusted by margins.
 
 <P5CanvasWrapper>
-  <P5Sketch art={Sketch0}/>
+  <P5Sketch art={Sketch0}/>
 </P5CanvasWrapper>
 
 
-If we think about it, every edge is a straight line between two points on a plane, and each edge has a start and end coordinate. 
+If we think about it, every edge is a straight line between two points on a plane, and each edge has a start and end coordinate, or corner vertices.
 
-Let's create a function called `Rectangle` that can hold values of all the coordinates of the edges of the rectangle and some helper functions. We will represent coordinates of our rectangle as points _a, b, c, d_ 
+Let's create a function called `Rectangle` that can hold values of all the coordinates of vertices of the rectangle. We will represent vertices as points _a, b, c, d_. Each vertex is a Point hence can be represented as `const a = [x, y]`;
 
 ```javascript
 export default function Sketch(p5) {
@@ -129,15 +141,15 @@ export default function Sketch(p5) {
 
 ```
 
-## Locating a point on a straight line at _K_ distance
+## Point at a _K_ distance
 
-There's a convinent mathematical formula to find coordinates of a point located exactly at k distance on a line segment.
+Our job can be made easier if we can just locate an arbitrary point on each edge of the rectangle and draw a line between the two points. Actually there's a convenient mathematical formula to find coordinates of a point located exactly at k distance on a line segment, and we can use that as we now know coordinates of the vertices of our rectangle.
 
 _P(x,y)=(x1 + k(x2 - x1), y1 + k(y2 - y1))_
 
 where _k_ is a fractional part of distance.
 
-So for example to find coordinates of a point located exactly at midpoint, we would use k as 1/2 or 0.5.
+So to find coordinates of a point located exactly at the midpoint of an edge AB (vertices a & b makes edge AB), we would use k as 1/2 or 0.5.
 
 We can write equivalent Javascript as - 
 
@@ -153,7 +165,7 @@ function pointCoordinatesOnLine(pointA, pointB, k) {
 
 ```
 
-Now using this method we can add another helper method in our Rectangle function to find center coordinates of all the edges of the rectangle.
+Now using this method we can add another helper method in our `Rectangle` function to find center coordinates of all the edges of the rectangle.
 
 ```javascript
 
@@ -213,14 +225,14 @@ function Rectangle(x, y, width, height) {
 
 ```
 
-Now we are ready to draw our rectangle on canvas.
+Let's recreate our rectangle on canvas but let's use the `Rectangle.draw` method instead.
 
 <P5CanvasWrapper>
-  <P5Sketch art={Sketch1} />
+  <P5Sketch art={Sketch1} />
 </P5CanvasWrapper>
 
 
-Let's add lines to the midpoints using the co-ordinates we calculated, and divide our rectangle into four parts. Midpoint coordinates are represented as _p, q, r, s, o_. _o_ represents center coordiantes of the rectangle.
+Next we add lines to the midpoints using the co-ordinates we calculated, and divide our rectangle into four parts. Midpoint vertices are represented as _p, q, r, s, o_, here _o_ simply means the center vertex of the rectangle.
 
 ```javascript
 
@@ -238,21 +250,19 @@ p5.draw = () => {
 ...
 
 }
-
-
 ```
+
+If we run above code we can see our rectangle perfectly divided into four parts.
+
 <P5CanvasWrapper>
 <P5Sketch art={Sketch2} />
 </P5CanvasWrapper>
 
 ## Connecting edges
 
-Now we need to draw horizontal, vertical and diagonal lines. We already have everything in place to draw these lines. We have all the coordinates of the rectangle and we can use our method `pointCoordinatesOnLine` to find coordinates on each side at a certain distance on our rectangle.
+One final step we need to figure out is how to draw horizontal, vertical and diagonal lines between the edges. Actually, we already have everything in place to draw these lines. We have all the coordinates of the rectangle and we can use our method `pointCoordinatesOnLine` to find coordinates on each side at a certain distance on our rectangle. So let's create a new function that will help draw multiple lines between two edges.
 
 ```javascript
-
-// helper function to draw lines between two
-// edges every k distance
 
 p5.draw = () => {
   ...
@@ -262,6 +272,9 @@ p5.draw = () => {
 }
 
 ...
+
+// helper function to draw lines between two
+// edges every k distance
 
 function drawLines(edge1, edge2, k) {
   const [pointA, pointB] = edge1;
@@ -277,9 +290,13 @@ function drawLines(edge1, edge2, k) {
 ...
 
 ```
+
+And our sketch looks pretty close. We will need to increase the number of lines to match the original artwork.
+
 <P5CanvasWrapper>
 <P5Sketch art={Sketch3} />
 </P5CanvasWrapper>
+
 
 Awesome! We are getting there. Let's draw the rest of the lines and finish our sketch.
 
@@ -288,20 +305,24 @@ Awesome! We are getting there. Let's draw the rest of the lines and finish our s
 p5.draw = () => {
   ...
 
-  drawLines([a, p], [s, o], 12);
-  drawLines([p, o], [b, q], 12);
+  drawLines([a, p], [s, o], 18);
+  drawLines([p, o], [b, q], 18);
 
-  drawLines([s, o], [s, d], 12);
-  drawLines([d, r], [o, r], 12);
+  drawLines([s, o], [s, d], 13);
+  drawLines([d, r], [o, r], 13);
 
-  drawLines([q, c], [q, o], 12);
-  drawLines([c, r], [o, r], 12);
+  drawLines([q, c], [q, o], 13);
+  drawLines([c, r], [o, r], 13);
 
 }
 ```
 
-Our final sketch looks super close to the artwork. Yay!
+Great! Here's our final output. It looks pretty close to the original work. We can tweak stroke width and adjust colors but we won't bother with that.
 
 <P5CanvasWrapper>
-  <P5Sketch art={FinalSketch} />
+  <P5Sketch art={FinalSketch} />
 </P5CanvasWrapper>
+
+So that's it! This was a fun exercise for me. The final code is available on <AnimatedLink to="https://github.com/vmaliwal/varun.io/tree/master/src/posts">github</AnimatedLink>. If you have any suggestions to improve feel free to reach out or open a pull request on github.
+
+Namaskar 🙏🏾

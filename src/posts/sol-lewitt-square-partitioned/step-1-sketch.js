@@ -20,9 +20,9 @@ export default function Sketch(p5) {
     rectangle.draw();
   };
 
-  function drawLine(pointA, pointB) {
-    p5.line(pointA[0], pointA[1], pointB[0], pointB[1]);
-  }
+  // function drawLine(pointA, pointB) {
+  //   p5.line(pointA[0], pointA[1], pointB[0], pointB[1]);
+  // }
 
   function Rectangle(x, y, width, height) {
     return {

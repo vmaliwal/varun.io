@@ -26,14 +26,14 @@ export default function Sketch(p5) {
     drawLine(p, r);
     drawLine(q, s);
 
-    drawLines([a, p], [s, o], 12);
-    drawLines([p, o], [b, q], 12);
+    drawLines([a, p], [s, o], 18);
+    drawLines([p, o], [b, q], 18);
 
-    drawLines([s, o], [s, d], 12);
-    drawLines([d, r], [o, r], 12);
+    drawLines([s, o], [s, d], 13);
+    drawLines([d, r], [o, r], 13);
 
-    drawLines([q, c], [q, o], 12);
-    drawLines([c, r], [o, r], 12);
+    drawLines([q, c], [q, o], 13);
+    drawLines([c, r], [o, r], 13);
   };
 
   function drawLines(edge1, edge2, k) {

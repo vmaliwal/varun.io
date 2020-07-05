@@ -20,4 +20,8 @@ export default function Sketch(p5) {
 
     p5.rect(x, y, w, h);
   };
+
+  // function drawLine(pointA, pointB) {
+  //   p5.line(pointA[0], pointA[1], pointB[0], pointB[1]);
+  // }
 }

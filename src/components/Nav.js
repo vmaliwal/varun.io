@@ -16,9 +16,9 @@ export default function Nav() {
         <AnimatedLink to="/about">
           <div>About</div>
         </AnimatedLink>
-        <AnimatedLink to="/contact">
+        {/* <AnimatedLink to="/contact">
           <div>Contact</div>
-        </AnimatedLink>
+        </AnimatedLink> */}
       </div>
     </NavWrapper>
   );

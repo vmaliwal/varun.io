@@ -19,23 +19,12 @@ export default function Sketch(p5) {
     const rectangle = new Rectangle(x, y, w, h);
     rectangle.draw();
 
-    const { a, b, c, d } = rectangle.coordinates();
+    // const { a, b, c, d } = rectangle.coordinates();
     const { p, q, r, s } = rectangle.centerCoordinates();
-    const o = [x + w / 2, y + h / 2];
+    // const o = [x + w / 2, y + h / 2];
 
     drawLine(p, r);
     drawLine(q, s);
-
-    /*
-    drawLines([a, p], [s, o], 12);
-    drawLines([p, o], [b, q], 12);
-
-    drawLines([s, o], [s, d], 12);
-    drawLines([d, r], [o, r], 12);
-
-    drawLines([q, c], [q, o], 12);
-    drawLines([c, r], [o, r], 12);
-    */
   };
 
   function drawLine(pointA, pointB) {

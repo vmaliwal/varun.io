@@ -19,7 +19,7 @@ export default function Sketch(p5) {
     const rectangle = new Rectangle(x, y, w, h);
     rectangle.draw();
 
-    const { a, b, c, d } = rectangle.coordinates();
+    const { a } = rectangle.coordinates();
     const { p, q, r, s } = rectangle.centerCoordinates();
     const o = [x + w / 2, y + h / 2];
 
