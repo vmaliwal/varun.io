@@ -1,20 +1,34 @@
 const path = require('path');
+// redundant code as es6 imports and require cannot work
+// together as of now. maybe once they are not experimental they can.
+// Another approach is to use esm, but we will get to it when we actully need to.
+const toKebabCase = (str) =>
+  str &&
+  str
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    .map((x) => x.toLowerCase())
+    .join('-');
+
 exports.createPages = async function ({ actions, graphql }) {
   const { createPage } = actions;
   const { data } = await graphql(`
     query {
       allMdx(sort: { fields: frontmatter___date, order: DESC }) {
-        nodes {
+        posts: nodes {
           frontmatter {
             slug
           }
           id
         }
+        tags: group(field: frontmatter___tags) {
+          fieldValue
+          totalCount
+        }
       }
     }
   `);
 
-  const { nodes: posts } = data.allMdx;
+  const { posts, tags } = data.allMdx;
 
   const postsPerPage = 7;
 
@@ -52,4 +66,16 @@ exports.createPages = async function ({ actions, graphql }) {
         context: { id },
       });
     });
+
+  // tags page
+
+  tags.map((tag) => {
+    createPage({
+      path: `/articles/tags/${toKebabCase(tag.fieldValue)}`,
+      component: path.resolve('./src/templates/tagPage.js'),
+      context: {
+        tag: tag.fieldValue,
+      },
+    });
+  });
 };
