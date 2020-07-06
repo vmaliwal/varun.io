@@ -8,3 +8,4 @@ export * from './ArticleElements';
 export * from './CommonElements';
 export * from './P5CanvasElements';
 export * from './ImageElements';
+export * from './TagsElements';
