@@ -3,8 +3,12 @@ import { graphql } from 'gatsby';
 import Container from '../components/Container';
 import Seo from '../components/Seo';
 import Articles from '../components/Articles';
-import { AnimatedLink } from '../elements';
-import Article from '../components/Article';
+import {
+  AnimatedLink,
+  TagsHeaderWrapper,
+  AllTagsButtonWrapper,
+  H1,
+} from '../elements';
 
 export default function tagsPage({ pageContext, data }) {
   const { tag } = pageContext;
@@ -17,11 +21,15 @@ export default function tagsPage({ pageContext, data }) {
   return (
     <Container>
       <Seo />
-      <h1>{tagHeader}</h1>
+      <TagsHeaderWrapper>
+        <H1>{tagHeader}</H1>
+      </TagsHeaderWrapper>
+      <AllTagsButtonWrapper>
+        <AnimatedLink to="/tags"> View all tags >></AnimatedLink>
+      </AllTagsButtonWrapper>
       <Articles data={data} />
 
       {/* TODO this should be a button.. And all tags page needs to be created */}
-      <AnimatedLink to="/tags"> All Tags</AnimatedLink>
     </Container>
   );
 }
@@ -38,7 +46,7 @@ export const pageQuery = graphql`
         frontmatter {
           slug
           title
-          date
+          date(formatString: "MMMM DD, YYYY")
           excerpt
         }
       }

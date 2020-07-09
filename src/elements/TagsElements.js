@@ -16,3 +16,12 @@ export const TagsArticleWrapper = styled.div`
     }
   }
 `;
+
+export const TagsHeaderWrapper = styled.div`
+  grid-column: 3 / span 10;
+`;
+
+export const AllTagsButtonWrapper = styled.div`
+  grid-column: 3 / span 10;
+  /* direction: rtl; */
+`;
