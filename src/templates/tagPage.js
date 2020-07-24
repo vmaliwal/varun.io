@@ -13,7 +13,7 @@ import {
 export default function tagsPage({ pageContext, data }) {
   const { tag } = pageContext;
   const { totalCount } = data.allMdx;
-  const tagsButtonText = `View all tags >>`;
+  // const tagsButtonText = `View all tags >>`;
 
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
