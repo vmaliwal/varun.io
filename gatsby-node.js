@@ -2,6 +2,7 @@ const path = require('path');
 // redundant code as es6 imports and require cannot work
 // together as of now. maybe once they are not experimental they can.
 // Another approach is to use esm, but we will get to it when we actully need to.
+// more info: https://github.com/gatsbyjs/gatsby/issues/7810
 const toKebabCase = (str) =>
   str &&
   str

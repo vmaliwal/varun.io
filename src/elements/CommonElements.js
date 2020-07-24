@@ -55,8 +55,8 @@ export const P = styled.p`
 `;
 
 export const H1 = styled.h1`
-  font-size: 2.25rem;
-  line-height: 2.25rem;
+  font-size: 2.5rem;
+  line-height: 2.5rem;
   color: ${(props) => (props.color ? props.color : props.theme.primaryText)};
   font-weight: 400;
   text-align: ${(props) => (props.textAlign ? props.textAlign : 'left')};

@@ -4,15 +4,16 @@ import Container from '../components/Container';
 import Seo from '../components/Seo';
 import Articles from '../components/Articles';
 import {
-  AnimatedLink,
+  // AnimatedLink,
   TagsHeaderWrapper,
-  AllTagsButtonWrapper,
-  H1,
+  // AllTagsButtonWrapper,
+  H2,
 } from '../elements';
 
 export default function tagsPage({ pageContext, data }) {
   const { tag } = pageContext;
   const { totalCount } = data.allMdx;
+  const tagsButtonText = `View all tags >>`;
 
   const tagHeader = `${totalCount} post${
     totalCount === 1 ? '' : 's'
@@ -22,14 +23,12 @@ export default function tagsPage({ pageContext, data }) {
     <Container>
       <Seo />
       <TagsHeaderWrapper>
-        <H1>{tagHeader}</H1>
+        <H2>{tagHeader}</H2>
       </TagsHeaderWrapper>
-      <AllTagsButtonWrapper>
-        <AnimatedLink to="/tags"> View all tags >></AnimatedLink>
-      </AllTagsButtonWrapper>
+      {/* <AllTagsButtonWrapper>
+        <AnimatedLink to="/tags">{tagsButtonText}</AnimatedLink>
+      </AllTagsButtonWrapper> */}
       <Articles data={data} />
-
-      {/* TODO this should be a button.. And all tags page needs to be created */}
     </Container>
   );
 }
