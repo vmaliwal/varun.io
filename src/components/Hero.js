@@ -25,8 +25,8 @@ export default function Hero() {
           <HeroSketchWrapper>
             <P5Sketch art={Sketch} />
             <p>
-              Recreating Sol LeWitt's "A Square Divided Horizontally and
-              Vertically into Four Equal Parts 1982"
+              Recreation of Sol LeWitt's "A Square Divided Horizontally and
+              Vertically into Four Equal Parts 1982" in JavaScript
             </p>
           </HeroSketchWrapper>
         </HeroTextWrapper>

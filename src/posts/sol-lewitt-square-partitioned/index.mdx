@@ -16,6 +16,7 @@ import Sketch1 from './step-1-sketch';
 import Sketch2 from './step-2-sketch';
 import Sketch3 from './step-3-sketch';
 import FinalSketch from './step-4-sketch';
+import HomePageSketch from '../../art/solLeWittSquare';
 
 
 I've been keeping myself a little busy lately to understand basic maths when I came across one of the artworks of Sol LeWitt.
@@ -322,6 +323,12 @@ Great! Here's our final output. It looks pretty close to the original work. We c
 
 <P5CanvasWrapper>
   <P5Sketch art={FinalSketch} />
+</P5CanvasWrapper>
+
+Let's add some background color and change our stroke color to match the original painting.
+
+<P5CanvasWrapper>
+  <P5Sketch art={HomePageSketch} />
 </P5CanvasWrapper>
 
 So that's it! This was a fun exercise for me. The final code is available on <AnimatedLink to="https://github.com/vmaliwal/varun.io/tree/master/src/posts">github</AnimatedLink>. If you have any suggestions to improve feel free to reach out or open a pull request on github.

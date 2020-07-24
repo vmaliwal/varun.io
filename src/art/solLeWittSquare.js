@@ -11,203 +11,121 @@ export default function Sketch(p5) {
   };
 
   p5.draw = () => {
-    const width = p5.width - 2;
-    const height = p5.height - 2;
-
-    const X = 1,
-      Y = 1;
-
+    p5.background('#FBF8F2');
     p5.stroke('#0F0F0F');
-    p5.strokeWeight(4);
-    p5.square(X, Y, width);
+    p5.strokeWeight(3.7);
 
-    // divide square in half
+    const margin = 0.1;
+    const x = p5.width * margin;
+    const y = p5.height * margin;
 
-    const x1 = width / 2;
-    const y1 = 0;
-    const x2 = x1;
-    const y2 = height;
+    let w = p5.width - 2 * x;
+    let h = p5.height - 2 * y;
 
-    p5.line(x1, y1, x2, y2);
+    const rectangle = new Rectangle(x, y, w, h);
+    rectangle.draw();
 
-    const y3 = height / 2;
-    const x3 = 0;
-    const y4 = y3;
-    const x4 = width;
+    const { a, b, c, d } = rectangle.coordinates();
+    const { p, q, r, s } = rectangle.centerCoordinates();
+    const o = [x + w / 2, y + h / 2];
 
-    p5.line(x3, y3, x4, y4);
+    drawLine(p, r);
+    drawLine(q, s);
 
-    // rectangle 1
-    const rectangle1 = Rectangle(0, 0, width / 2);
+    drawLines([a, p], [s, o], 18);
+    drawLines([p, o], [b, q], 18);
 
-    const { top, bottom } = rectangle1.pointsOnRectangle(10);
+    drawLines([s, o], [s, d], 13);
+    drawLines([d, r], [o, r], 13);
 
-    for (let i = 0; i < top.x.length - 1; i += 1) {
-      p5.line(
-        top.x[i] || top.x[0],
-        top.y[i] || top.y[0],
-        bottom.x[i] || bottom.x[0],
-        bottom.y[i] || bottom.y[0]
-      );
-    }
-
-    // rectangle 4
-    const rectangle4 = Rectangle(width / 2, 0, width / 2);
-    const { left: left4, right: right4 } = rectangle4.pointsOnRectangle(10);
-
-    for (let i = 0; i < left4.y.length - 1; i++) {
-      p5.line(
-        left4.x[i] || left4.x[0],
-        left4.y[i] || left4.y[0],
-        right4.x[i] || right4.x[0],
-        right4.y[i] || right4.y[0]
-      );
-    }
-
-    // rectangle 2
-    const rectangle2 = Rectangle(0, height / 2, height / 2);
-
-    const {
-      left: left2,
-      right: right2,
-      top: top2,
-      bottom: bottom2,
-    } = rectangle2.pointsOnRectangle(12.4);
-
-    for (let i = 0; i < top2.x.length - 1; i++) {
-      p5.line(
-        left2.x[i] || left2.x[0],
-        left2.y[i] || left2.y[0],
-        top2.x[i] || top2.x[0],
-        top2.y[i] || top2.y[0]
-      );
-    }
-
-    for (let i = 0; i < right2.y.length - 1; i++) {
-      p5.line(
-        bottom2.x[i] || bottom2.x[0],
-        bottom2.y[i] || bottom2.y[0],
-        right2.x[i] || right2.x[0],
-        right2.y[i] || right2.x[0]
-      );
-    }
-
-    // rectangle 3
-    const rectangle3 = Rectangle(width / 2, height / 2, height / 2);
-
-    const {
-      top: top3,
-      left: left3,
-      right: right3,
-      bottom: bottom3,
-    } = rectangle3.pointsOnRectangle(12.4);
-
-    for (let i = 0, j = right3.y.length - 2; i < top3.x.length - 1; i++, j--) {
-      p5.line(
-        top3.x[i] || top3.x[0],
-        top3.y[i] || top3.y[0],
-        right3.x[j] || right3.x[0],
-        right3.y[j] || right3.y[0]
-      );
-    }
-
-    for (
-      let i = 0, j = bottom3.x.length - 2;
-      i < left3.y.length - 1;
-      i++, j--
-    ) {
-      p5.line(
-        left3.x[i] || left3.x[0],
-        left3.y[i] || left3.y[0],
-        bottom3.x[j] || bottom3.x[0],
-        bottom3.y[j] || bottom3.y[0]
-      );
-    }
+    drawLines([q, c], [q, o], 13);
+    drawLines([c, r], [o, r], 13);
   };
 
-  function Rectangle(x, y, sideX, sideY = sideX) {
+  function drawLines(edge1, edge2, k) {
+    const [pointA, pointB] = edge1;
+    const [pointC, pointD] = edge2;
+
+    for (let i = 0; i < k; ++i) {
+      const [x1, y1] = pointCoordinatesOnLine(pointA, pointB, i / k);
+      const [x2, y2] = pointCoordinatesOnLine(pointC, pointD, i / k);
+      drawLine([x1, y1], [x2, y2]);
+    }
+  }
+
+  function drawLine(pointA, pointB) {
+    p5.line(pointA[0], pointA[1], pointB[0], pointB[1]);
+  }
+
+  function Rectangle(x, y, width, height) {
     return {
-      area: area(),
-      coordinates: coordinates(),
-      diagonalCoordinates: diagonalCoordinates(),
-      lengthOfDiagonal: lengthOfDiagonal(),
-      pointsOnRectangle,
+      centerCoordinates,
+      coordinates,
+      draw,
     };
 
-    function area() {
-      return sideX * sideY;
+    function centerCoordinates(midpoints = {}) {
+      const midpointMapping = {
+        ab: 'p',
+        bc: 'q',
+        cd: 'r',
+        da: 's',
+        ba: 'p',
+        cb: 'q',
+        dc: 'r',
+        ad: 's',
+      };
+
+      const calculateMidpoint = (point1, point2) => {
+        let [kA, pointA] = point1;
+        let [kB, pointB] = point2;
+
+        const edge = `${kA}${kB}`;
+
+        midpoints[midpointMapping[edge]] = pointCoordinatesOnLine(
+          pointA,
+          pointB,
+          0.5
+        );
+
+        return point2;
+      };
+
+      const coordinatesArray = Object.entries(coordinates());
+      const sideDA = [
+        coordinatesArray[0],
+        coordinatesArray[coordinatesArray.length - 1],
+      ];
+
+      [...coordinatesArray, ...sideDA].reduce((point1, point2) =>
+        calculateMidpoint(point1, point2)
+      );
+
+      return midpoints;
     }
 
     function coordinates() {
+      const w = x + width;
+      const h = y + height;
+
       return {
-        x1: x,
-        y1: y,
-        x2: x,
-        y2: y + sideY,
-        x3: x + sideX,
-        y3: y + sideY,
-        x4: x + sideX,
-        y4: y,
+        a: [x, y],
+        b: [w, y],
+        c: [w, h],
+        d: [x, h],
       };
     }
 
-    function diagonalCoordinates() {
-      const { x2, y2, x4, y4, x1, y1, x3, y3 } = coordinates();
-
-      return {
-        topRight: {
-          x1: x2,
-          y1: y2,
-          x2: x4,
-          y2: y4,
-        },
-        topLeft: {
-          x1,
-          y1,
-          x2: x3,
-          y2: y3,
-        },
-      };
+    function draw() {
+      p5.rect(x, y, width, height);
     }
+  }
 
-    function lengthOfDiagonal() {
-      return p5.sqrt((sideX ^ 2) + (sideY ^ 2));
-    }
+  // find coordinates of a point on line at distance k
+  function pointCoordinatesOnLine(pointA, pointB, k) {
+    const x = pointA[0] + k * (pointB[0] - pointA[0]);
+    const y = pointA[1] + k * (pointB[1] - pointA[1]);
 
-    // Return coordinates of rectangle specified by distance;
-    function pointsOnRectangle(distance) {
-      const { x1, y1, x2, y2, x3, y3, x4, y4 } = coordinates();
-
-      const x1x4 = _pointsOnLine(x1, y1, x4, y4, distance);
-      const x1x2 = _pointsOnLine(x1, y1, x2, y2, distance);
-      const x2x3 = _pointsOnLine(x2, y2, x3, y3, distance);
-      const x3x4 = _pointsOnLine(x3, y3, x4, y4, distance);
-
-      return {
-        top: x1x4,
-        left: x1x2,
-        bottom: x2x3,
-        right: x3x4,
-      };
-    }
-
-    function _pointsOnLine(x1, y1, x2, y2, step = 1) {
-      const x = _range(x1, x2, step);
-      const y = _range(y1, y2, step);
-
-      return { x, y };
-    }
-
-    function _range(start, end, step = 1) {
-      if (start > end) [start, end] = [end, start];
-
-      const a = [start];
-      let b = start;
-      while (b < end) {
-        a.push((b += step));
-      }
-
-      return [...a];
-    }
+    return [x, y];
   }
 }
